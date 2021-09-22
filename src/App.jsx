@@ -1,7 +1,10 @@
+import CartList from './components/cats/CartList'
+import items from './data'
+
 function App() {
   return (
     <div className="container">
-      <h1>Cart</h1>
+      <CartList items={items} />
     </div>
   )
 }
