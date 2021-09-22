@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import {useState, useCallback} from 'react'
 import CartList from './components/cats/CartList'
 import Form from './components/cats/Form'
-import {fetchUser, sleep} from './utils'
+import {fetchUser} from './utils'
 import {FullSpinner} from './styles/app'
 
 function App() {
@@ -16,8 +16,7 @@ function App() {
      }
       setStatus('pending')
       setError(null)
-      await sleep();
-      fetchUser(userName)
+     fetchUser(userName)
       .then(
         item => {
           setItems(x => [...x, item])
@@ -28,15 +27,21 @@ function App() {
           setStatus('rejected')
         }
       ) 
+}
 
+const deleteItem = useCallback(id => {
+  if(!window.confirm('Are you sure?')) {
+    return false;
+  }
+  setItems(items => items.filter(v => v.id !== id))
+}, [])
 
-   }
   return (
     <div className="container">
       <Form isDisabled={status === 'pending'}  addItem = {addItem} />
       {status === "pending" && <FullSpinner />}
       {error && <h1>{error.message.toString()}</h1>}
-      <CartList items={items} />
+      <CartList deleteItem={deleteItem}  items={items} />
     </div>
   )
 }

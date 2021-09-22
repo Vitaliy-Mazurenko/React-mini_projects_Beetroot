@@ -1,13 +1,13 @@
+import {memo} from 'react'
 import PropTypes from 'prop-types'
 
-
-const Cart = ({item}) => {
+const Cart = ({item, deleteItem}) => {
     return (
         <div className="cart">
         <h3>{item.name}</h3>
         <p>{item.login}</p>
         <img src={item.avatar_url} alt={item.name}/>
-         <button className="delete-button">Delete user</button>
+         <button onClick={() => deleteItem(item.id)}  className="delete-button">Delete user</button>
     </div>
     )
 }
@@ -18,7 +18,8 @@ Cart.propTypes = {
         name: PropTypes.string.isRequired,
         login: PropTypes.string.isRequired,
         avatar_url:PropTypes.string
-    }).isRequired
+    }).isRequired,
+    deleteItem: PropTypes.func.isRequired
 }
 
-export default Cart
+export default memo(Cart)
