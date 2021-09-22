@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 
 
 const Cart = ({item}) => {
@@ -10,6 +11,14 @@ const Cart = ({item}) => {
     </div>
     )
 }
-// shape
+
+Cart.propTypes = {
+    item: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        login: PropTypes.string.isRequired,
+        avatar_url:PropTypes.string
+    }).isRequired
+}
 
 export default Cart
