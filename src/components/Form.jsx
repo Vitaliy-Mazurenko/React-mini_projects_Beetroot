@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Spinner, WrapForm, FormGroup, Label, Input, ButtonGroup, Button} from './styles/app'
+import {Spinner, FullSpinner, WrapForm, FormGroup, Label, Input, ButtonGroup, Button} from './styles/app'
 
 
 const initiState = {email: '', password: ''}
@@ -22,6 +22,7 @@ const Form = () => {
   }
   return (
     <WrapForm onSubmit={handleSubmit}>
+      {loading && <FullSpinner />}
      <FormGroup>
         <Label htmlFor="email">Email</Label>
         <Input name="email" value={data.email} onChange={handleChange} />

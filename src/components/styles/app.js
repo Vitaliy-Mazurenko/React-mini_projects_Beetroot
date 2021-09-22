@@ -18,7 +18,16 @@ Spinner.defaultProps = {
     'aria-label': "loading"
 }
 export function FullSpinner(){
-    
+    return <div css={{
+        fontSize: "4em",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    }}>
+        <Spinner />
+    </div>
 }
 
 

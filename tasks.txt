@@ -95,12 +95,12 @@ import {jsx} from "@emotion/react"
  
 ////  ------------------------- 🖍 
 .full-spinner {
-  fontSize: 4em;
-  height: 100vh;
-  display: flex;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
+  "fontSize": 4em,
+  "height": 100vh,
+  "display": flex,
+  "flexDirection": column,
+  "justifyContent": center,
+  "alignItems": center
 }
 --------------------------------------------- ////
 ==================================================================
