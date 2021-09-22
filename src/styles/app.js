@@ -34,5 +34,13 @@ export const Button = styled.button({
   textTransform: "uppercase",
   padding: " 0 12px",
   display: "flex",
-  alignItems: "center",
-})
+  alignItems: "center"
+},
+
+  ({disabled}) => ({
+    backgroundColor: disabled ? "black": "lightslategray",
+    "&:hover": {
+      backgroundColor: disabled ? "black": "lightslategreen",
+    }
+  })
+)

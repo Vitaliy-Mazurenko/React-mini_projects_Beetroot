@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import PropTypes from 'prop-types'
-
+import {Button} from '../../styles/app'
 
 const Form = ({addItem, isDisabled}) => {
   const [val, setVal] = useState('')
@@ -18,7 +18,7 @@ const Form = ({addItem, isDisabled}) => {
         <div className="form-box">
           <div className="form-box__item">
               <input type="text" value={val} onChange={handleChange}/>
-              <button disabled={isDisabled}>Add user</button>
+              <Button disabled={isDisabled}>Add user</Button>
           </div>
         </div>
        </form>
