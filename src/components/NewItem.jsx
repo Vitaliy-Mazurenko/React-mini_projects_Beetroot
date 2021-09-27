@@ -1,19 +1,27 @@
+import { useState } from "react";
 import { generate as id } from "shortid";
 
-const NewItem = () => {
+
+const NewItem = ({addItem}) => {
+  const [val, setVal] = useState('')
+
   const handleChange = ({ target }) => {
-    //
+    setVal(target.value)
   };
 
-  const handleSubmit = (event) => {
-    //
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    addItem({value:val, id: id(), packed: false})
+    setVal('')
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="row">
         <div className="col-md-10">
-          <input className="form-control mb-3" type="text" value={"VALUE"} />
+          <input className="form-control mb-3" type="text" value={val} 
+            onChange={handleChange}
+          />
         </div>
         <div className="col-md-2">
           <input className="btn btn-success" type="submit" value="Add item" />
