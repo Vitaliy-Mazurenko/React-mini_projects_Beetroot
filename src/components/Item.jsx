@@ -1,9 +1,9 @@
-import React, { Component, memo } from "react";
+import React, { PureComponent, memo } from "react";
 import PropTypes from "prop-types";
 import "./Item.css";
 import AppContext from "./context/AppContext";
 
-class Item extends Component {
+class Item extends PureComponent {
   render() {
     const { item } = this.props;
     return (

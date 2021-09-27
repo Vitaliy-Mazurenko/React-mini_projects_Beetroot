@@ -37,11 +37,13 @@ class App extends Component {
     });
   };
 
+  value=  { deleteItem: this.deleteItem,  changePackStatus: this.changePackStatus};
+
   render() {
     const { items } = this.state;
 
     return (
-      <AppContext.Provider value={{ deleteItem: this.deleteItem,  changePackStatus: this.changePackStatus}}>
+      <AppContext.Provider value={this.value}>
         <div className="container py-3">
           <NewItem addItem={this.addItem} />
           <div className="row">
