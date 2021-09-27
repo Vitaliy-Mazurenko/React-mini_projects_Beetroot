@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { generate as id } from "shortid";
 
 
@@ -31,4 +31,4 @@ const NewItem = ({addItem}) => {
   );
 };
 
-export default NewItem;
+export default memo(NewItem);

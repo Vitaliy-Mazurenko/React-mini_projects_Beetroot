@@ -11,7 +11,7 @@ const App = () => {
   const packedImtes = items.filter(v => v.packed)
   const unPackedImtes = items.filter(v => !v.packed)
 
-  const addItem = newItem => setItems(x => [newItem, ...x]); 
+  const addItem = useCallback(newItem => setItems(x => [newItem, ...x]), []); 
 
   const removeItem = useCallback(id => setItems(x => x.filter(v => v.id !== id)), [])
   
