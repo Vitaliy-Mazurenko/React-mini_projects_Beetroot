@@ -1,34 +1,35 @@
-import { useState, memo } from "react";
+import {useState} from "react";
 import { generate as id } from "shortid";
+import {useAddItem} from "../context/AppContext";
 
-
-const NewItem = ({addItem}) => {
-  const [val, setVal] = useState('')
-
+const NewItem = () => {
+  const [value,setValue]=useState('');
+  const {addItem}=useAddItem();
   const handleChange = ({ target }) => {
-    setVal(target.value)
+    const {value}=target;
+    setValue(value)
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    addItem({value:val, id: id(), packed: false})
-    setVal('')
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if(value.length<1) return ;
+    addItem({value: value, id: id(), packed: false})
+    setValue('')
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="row">
         <div className="col-md-10">
-          <input className="form-control mb-3" type="text" value={val} 
-            onChange={handleChange}
-          />
+          <input className="form-control mb-3" type="text" value={value} onChange={(e)=>handleChange(e)} />
         </div>
         <div className="col-md-2">
-          <input className="btn btn-success" type="submit" value="Add item" />
+          <input className="btn btn-success" type="submit" value="Add item" onClick={(e)=>{handleSubmit(e)}} />
         </div>
       </div>
     </form>
   );
 };
 
-export default memo(NewItem);
+
+export default NewItem;

@@ -1,26 +1,36 @@
 import Item from "./Item";
 import Filter from "./Filter";
-import { useState } from "react";
+import PropTypes from 'prop-types';
+import { useState} from "react";
+import { useFilterItem} from '../context/AppContext'
+const ListItems = ({ title }) => {
+  const [filter,setFilter]=useState('')
+  const updateFilter = (searchTerm) => {
+    setFilter(searchTerm);
+  };
+  const {filterItems}=useFilterItem();
 
-const ListItems = ({ title, items }) => {
-  const [filter, setFilter] = useState('')
-  
-  const updateFilter = (filter) =>  setFilter(filter)
-  
-  const getBody = () => {
-    return items.filter(item => item.value.toLowerCase().includes(filter.trim().toLowerCase()))
-    .map(v => <Item item={v}  key={v.id}/>)
-  }
-
+ function listRender(){
+     let items=filterItems(title);
+      if(filter.length>0) items=items.filter(item=>item.value.toUpperCase().includes(filter.toUpperCase()))
+      return(
+          <>
+              <h3 className="mb-3">{title}</h3>
+              <Filter filter={filter} onChange={updateFilter} />
+              <ul className="mb-3 p-0">
+                  {items.map(item=><Item key={item.id} item={item} />)}
+              </ul>
+          </>
+      )
+ }
   return (
     <section>
-      <h3 className="mb-3">Title</h3>
-      <Filter filter={filter} updateFilter={updateFilter} />
-      <ul className="mb-3 p-0">
-        {getBody()}
-      </ul>
+        {listRender()}
     </section>
   );
 };
+ListItems.propTypes = {
+    title: PropTypes.string.isRequired
+}
 
 export default ListItems;
